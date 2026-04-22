@@ -16,11 +16,9 @@ class Ticket{
 
     public:
 
-        int setSeats(){
-            Totalseats=150;
-            sleeperSeats = 100;
-            ACseats = 50;
-        }
+       Ticket(){
+        Totalseats = 150;
+       }
 
         void inputDetail(){
             cout << "Enter Ticket ID: ";
@@ -33,22 +31,22 @@ class Ticket{
             cin >> age;
 
             cout << "Enter Destination: ";
-            cin >> Destination;
+            getline(cin,Destination);
 
             cout << "Enter Distance (km): ";
             cin >> distanceTravel;
 
-            baseFare = distanceTravel * 2;
+        }
+
+        void calculateFare(){
 
         }
-        virtual void calculateFare() = 0; // polymorphism
-
         virtual void display(){
-            cout << "\nTicket ID: " << TicketID;
-            cout << "\nName: " << passengerName;
-            cout << "\nAge: " << age;
-            cout << "\nDestination: " << Destination;
-            cout << "\nDistance: " << distanceTravel;
+            cout << "Ticket ID: " << TicketID <<endl;
+            cout << "Name: " << passengerName <<endl;
+            cout << "Age: " << age <<endl;
+            cout << "Destination: " << Destination <<endl;
+            cout << "Distance: " << distanceTravel <<endl;
          }
 
 
@@ -64,13 +62,17 @@ class SleeperClass : public Ticket{
     public:
 
         void SleeperInput(){
-             inputDetail();
+        
         }
-        void display(){
+        // sleeper
+        void CalculateScharge(){
+
+        }
+
+        void display() override {
              Ticket::display();
-             cout << "\nClass: Sleeper";
-             cout << "\nFare: " << totalFare << endl;
-    }
+             
+        }
 
 };
 
@@ -84,12 +86,17 @@ class ACclass : public Ticket{
     public:
 
         void ACinput(){
-            inputDetail();   
+           
         }
-         void display(){
+
+        void CalculateACcharge() {
+
+        }
+
+
+         void display() override{
             Ticket::display();
-            cout << "\nClass: AC";
-            cout << "\nFare: " << totalFare << endl;
+          
          }
 
 };
@@ -103,7 +110,10 @@ public:
 
     void bookTicket(){
         int choice;
-        cout << "\n1. Sleeper\n2. AC\nChoose Class: ";
+        cout << "1. Sleeper"<<endl;
+        cout<<"2. AC"<<endl;
+        cout<<"3. Regural"<<endl;
+        cout<<"Choose Class: ";
         cin >> choice;
 
         if(choice == 1){
@@ -118,8 +128,14 @@ public:
             a.calculateFare();
             a.display();
         }
+        else if(choice == 3){
+            Ticket* t;
+            t->inputDetail();
+            t->calculateFare();
+            t->display();
+        }
         else{
-            cout << "Invalid Choice!\n";
+            cout << "Invalid Choice!"<<endl;
         }
      }
      void viewTickets(){
@@ -127,9 +143,7 @@ public:
      void cancelTicket(){
      }
      void showStatus(){
-        cout << "\nTotal Tickets Booked: " << Ticket::totalTickets;
-        cout << "\nAvailable Sleeper Seats: " << Ticket::sleeperSeats;
-        cout << "\nAvailable AC Seats: " << Ticket::ACseats << endl;
+        
     }
 
 
@@ -137,29 +151,7 @@ public:
 };
 
 int main(){
-    RailwaySystem rs;
-    int choice;
-
-    do{
-        cout << "\n===== RAILWAY SYSTEM =====\n";
-        cout << "1. Book Ticket\n";
-        cout << "2. View Tickets\n";
-        cout << "3. Cancel Ticket\n";
-        cout << "4. Seat Status\n";
-        cout << "5. Exit\n";
-        cout << "Enter Choice: ";
-        cin >> choice;
-
-        switch(choice){
-            case 1: rs.bookTicket(); break;
-            case 2: rs.viewTickets(); break;
-            case 3: rs.cancelTicket(); break;
-            case 4: rs.showStatus(); break;
-            case 5: cout << "Thank You!\n"; break;
-            default: cout << "Invalid Choice!\n";
-        }
-
-    }while(choice != 5);
+   
 
     return 0;
 }
