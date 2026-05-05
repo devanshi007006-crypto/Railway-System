@@ -1,12 +1,14 @@
 #include<iostream>
 #include<string>
+#include<fstream>
 #include<iomanip>
 using namespace std; 
 
 class RailwaySystem{};
 
 class Ticket{
-    protected:
+
+    public:
 
         int TicketID;
         string passengerName;
@@ -15,9 +17,7 @@ class Ticket{
         string Destination;
         int age;
         int Totalseats;  //200
-
-    public:
-
+        
        Ticket(){
         Totalseats = 200;
         baseFare = 0;
@@ -154,7 +154,15 @@ class RailwaySystem{
     Ticket t;
     SleeperClass s;
     ACclass a;
+   
+    
 public:
+    Ticket tickets[200];
+    int count = 0;
+
+    RailwaySystem(){
+        count = 0;
+    }
 
     void bookTicket(){
         int choice;
@@ -164,31 +172,71 @@ public:
         cout<<"Choose Class: ";
         cin >> choice;
 
+        if(count >= 100){
+            cout<<"No more bookings possible!"<<endl;
+            return;
+        }
+
+
         if(choice == 1){
             SleeperClass s;
             s.SleeperInput();
             s.calculateFare();
             s.display();
+
+            tickets[count++] = s; // store
         }
         else if(choice == 2){
             ACclass a;
             a.ACinput();
             a.calculateFare();
             a.display();
+
+            tickets[count++] = a; // store
         }
         else if(choice == 3){
             Ticket* t;
             t->inputDetail();
             t->calculateFare();
             t->display();
+
+            tickets[count++] = *t; // store
         }
         else{
             cout << "Invalid Choice!"<<endl;
         }
      }
      void viewTickets(){
+       
+        if(count == 0){
+            cout<<"No tickets booked yet!\n";
+            return;
+        }
+
+        cout<<"\n--- All Tickets ---\n";
+        for(int i=0; i<count; i++){
+            cout<<"\nTicket "<<i+1<<endl;
+            tickets[i].display();
+        }
      }
      void cancelTicket(){
+
+            int id;
+            cout<<"Enter Ticket ID to cancel: ";
+            cin>>id;
+    
+            for(int i=0; i<count; i++){
+                if(tickets[i].TicketID == id){
+                    cout<<"Ticket Cancelled: "<<tickets[i].passengerName<<endl;
+                    for(int j=i; j<count-1; j++){
+                        tickets[j] = tickets[j+1];
+                    }
+                    count--;
+                    return;
+                }
+            }
+            cout<<"Ticket ID not found!"<<endl;
+
      }
 
      void showStatus(){
@@ -204,8 +252,10 @@ public:
 
 int main(){
     RailwaySystem rs;
+    fstream file("tickets.txt", ios::out | ios::app);
     int ch;
 
+    
     do{
         cout<<"1.Book Ticket."<<endl;
         cout<<"2.View Tickets."<<endl;
@@ -223,6 +273,19 @@ int main(){
         }
     }
         while(ch != 5);
+
+
+    file << "TicketID,PassengerName,Age,Destination,Distance,BaseFare" <<endl; // Header for CSV
+    for(int i=0; i<rs.count; i++){
+        file << rs.tickets[i].TicketID << ","
+             << rs.tickets[i].passengerName << ","
+             << rs.tickets[i].age << ","
+             << rs.tickets[i].Destination << ","
+             << rs.tickets[i].distanceTravel << ","
+             << rs.tickets[i].baseFare << "\n";
+    }
+
+    file.close();
     return 0;
    
 }
