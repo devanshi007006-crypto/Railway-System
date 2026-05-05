@@ -3,6 +3,8 @@
 #include<iomanip>
 using namespace std; 
 
+class RailwaySystem{};
+
 class Ticket{
     protected:
 
@@ -55,6 +57,8 @@ class Ticket{
             cout << "Base Fare: " << baseFare <<endl;
         }
 
+        friend class RailwaySystem;
+
 };
 
 class SleeperClass : public Ticket{
@@ -94,6 +98,8 @@ class SleeperClass : public Ticket{
             cout << "Sleeper Charge: " << SleeperCharge <<endl;
             cout << "Remaining Sleeper Seats: " << sleeperSeats << endl;
         }
+
+        friend class RailwaySystem;
 
 };
 
@@ -137,10 +143,16 @@ class ACclass : public Ticket{
             cout << "Remaining AC Seats: " << ACseats << endl;
         }
 
+        friend class RailwaySystem;
+
 };
 
 
 class RailwaySystem{
+
+    Ticket t;
+    SleeperClass s;
+    ACclass a;
 public:
 
     void bookTicket(){
@@ -178,9 +190,9 @@ public:
      void cancelTicket(){
      }
      void showStatus(){
-         cout<<"Total Tickets: "<<totalSeats<<endl;
-         cout<<"Sleeper Seats Left: "<<sleeperSeats;
-         cout<<"AC Seats Left: "<<ACseats<<endl;
+         cout<<"Total Tickets: "<<t.Totalseats<<endl;
+         cout<<"Sleeper Seats Left: "<<s.sleeperSeats<<endl;
+         cout<<"AC Seats Left: "<<a.ACseats<<endl;
         
     }
 
