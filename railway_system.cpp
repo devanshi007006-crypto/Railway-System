@@ -183,8 +183,19 @@ public:
             s.CalculateScharge();
             s.display();
 
+            ofstream file("tickets.txt", ios::app);
+
+            file << s.TicketID << ","
+                << s.passengerName << ","
+                << s.age << ","
+                << s.Destination << ","
+                << s.distanceTravel << ","
+                << s.baseFare << endl;
+
+            file.close();
             tickets[count++] = s; // store
         }
+
         else if(choice == 2){
             ACclass a;
             a.ACinput();
@@ -192,15 +203,37 @@ public:
             a.CalculateACcharge();
             a.display();
 
+            ofstream file("tickets.txt", ios::app);
+
+            file << a.TicketID << ","
+                << a.passengerName << ","
+                << a.age << ","
+                << a.Destination << ","
+                << a.distanceTravel << ","
+                << a.baseFare << endl;
+
+            file.close();
+
             tickets[count++] = a; // store
         }
         else if(choice == 3){
-            Ticket* t;
-            t->inputDetail();
-            t->calculateFare();
-            t->display();
+            Ticket t;
+            t.inputDetail();
+            t.calculateFare();
+            t.display();
 
-            tickets[count++] = *t; // store
+            ofstream file("tickets.txt", ios::app);
+
+            file << t.TicketID << ","
+                << t.passengerName << ","
+                << t.age << ","
+                << t.Destination << ","
+                << t.distanceTravel << ","
+                << t.baseFare << endl;
+
+            file.close();
+
+            tickets[count++] = t; // store
         }
         else{
             cout << "Invalid Choice!"<<endl;
@@ -250,11 +283,8 @@ public:
 
 int main(){
     RailwaySystem rs;
-    fstream file("tickets.txt", ios::out | ios::app);
+   
     int ch;
-
-    file.open("tickets.txt", ios::out);
-
     
     do{
         cout<<"1.Book Ticket."<<endl;
@@ -266,7 +296,9 @@ int main(){
         cin>>ch;
 
         switch(ch){
-            case 1: {rs.bookTicket(); break;}
+            case 1: {rs.bookTicket(); 
+                cout<<"Ticket Booked Successfully!"<<endl;
+                break;}
             case 2: {rs.viewTickets(); break;}
             case 3: {rs.cancelTicket(); break;}
             case 4: {rs.showStatus(); break;}
@@ -275,17 +307,6 @@ int main(){
         while(ch != 5);
 
 
-    file << "TicketID,PassengerName,Age,Destination,Distance,BaseFare" <<endl; // Header for CSV
-    for(int i=0; i<rs.count; i++){
-        file << rs.tickets[i].TicketID << ","
-             << rs.tickets[i].passengerName << ","
-             << rs.tickets[i].age << ","
-             << rs.tickets[i].Destination << ","
-             << rs.tickets[i].distanceTravel << ","
-             << rs.tickets[i].baseFare << "\n";
-    }
-
-    file.close();
-    return 0;
+        return 0;
    
 }
