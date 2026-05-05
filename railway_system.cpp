@@ -66,6 +66,15 @@ class SleeperClass : public Ticket{
     public:
 
         SleeperClass(){
+            if(age < 12){
+                baseFare *= 0.5; // 50% discount for children
+            }
+            else if(age >= 60){
+                baseFare *= 0.7; // 30% discount for senior citizens
+            }
+            else{
+                baseFare = baseFare; // No discount for adults
+            }
             sleeperSeats = 100;
             SleeperCharge = 0;
         }
@@ -107,6 +116,15 @@ class ACclass : public Ticket{
         }
 
         void CalculateACcharge() {
+            if(age < 12){
+                baseFare *= 0.5; // 50% discount for children
+            }
+            else if(age >= 60){
+                baseFare *= 0.7; // 30% discount for senior citizens
+            }
+            else{
+                baseFare = baseFare; // No discount for adults
+            }
             ACcharges = baseFare + 500;
             ACseats--;
 
