@@ -137,7 +137,6 @@ class ACclass : public Ticket{
 
         }
 
-
          void display() override{
             Ticket::display();
             cout << "AC Charge: " << ACcharges <<endl;
@@ -147,7 +146,6 @@ class ACclass : public Ticket{
         friend class RailwaySystem;
 
 };
-
 
 class RailwaySystem{
 
@@ -245,8 +243,6 @@ public:
          cout<<"AC Seats Left: "<<a.ACseats<<endl;
         
     }
-
-
 
 };
 
