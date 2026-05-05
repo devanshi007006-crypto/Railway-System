@@ -242,13 +242,13 @@ public:
      void viewTickets(){
        
         if(count == 0){
-            cout<<"No tickets booked yet!\n";
+            cout<<"No tickets booked yet!"<<endl;
             return;
         }
 
         cout<<"\n--- All Tickets ---\n";
         for(int i=0; i<count; i++){
-            cout<<"\nTicket "<<i+1<<endl;
+            cout<<"Ticket "<<i+1<<endl;
             tickets[i].display();
         }
      }
@@ -305,7 +305,6 @@ int main(){
         }
     }
         while(ch != 5);
-
 
         return 0;
    
