@@ -158,9 +158,9 @@ public:
 
     void bookTicket(){
         int choice;
-        cout << "1. Sleeper"<<endl;
-        cout<<"2. AC"<<endl;
-        cout<<"3. Regural"<<endl;
+        cout << "1. Sleeper class"<<endl;
+        cout<<"2. AC Class"<<endl;
+        cout<<"3. Regular Class"<<endl;
         cout<<"Choose Class: ";
         cin >> choice;
 
@@ -190,6 +190,7 @@ public:
      }
      void cancelTicket(){
      }
+
      void showStatus(){
          cout<<"Total Tickets: "<<t.Totalseats<<endl;
          cout<<"Sleeper Seats Left: "<<s.sleeperSeats<<endl;
@@ -208,18 +209,20 @@ int main(){
     do{
         cout<<"1.Book Ticket."<<endl;
         cout<<"2.View Tickets."<<endl;
-        cout<<"3.Status."<<endl;
-        cout<<"4.Exit."<<endl;
+        cout<<"3.Cancel Ticket."<<endl;
+        cout<<"4.Status."<<endl;
+        cout<<"5.Exit."<<endl;
         cout<<"Choice:"<<endl;
         cin>>ch;
 
         switch(ch){
             case 1: rs.bookTicket();
             case 2: rs.viewTickets();
-            case 3: rs.showStatus();
+            case 3: rs.cancelTicket();
+            case 4: rs.showStatus();
         }
     }
-        while(ch != 4);
+        while(ch != 5);
     return 0;
    
 }
