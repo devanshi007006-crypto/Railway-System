@@ -4,7 +4,7 @@
 #include<iomanip>
 using namespace std; 
 
-class RailwaySystem{};
+class RailwaySystem;
 
 class Ticket{
 
@@ -266,10 +266,10 @@ int main(){
         cin>>ch;
 
         switch(ch){
-            case 1: rs.bookTicket();
-            case 2: rs.viewTickets();
-            case 3: rs.cancelTicket();
-            case 4: rs.showStatus();
+            case 1: {rs.bookTicket(); break;}
+            case 2: {rs.viewTickets(); break;}
+            case 3: {rs.cancelTicket(); break;}
+            case 4: {rs.showStatus(); break;}
         }
     }
         while(ch != 5);
