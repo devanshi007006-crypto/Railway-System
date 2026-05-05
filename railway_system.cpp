@@ -70,6 +70,16 @@ class SleeperClass : public Ticket{
     public:
 
         SleeperClass(){
+            
+            SleeperCharge = 0;
+        }
+
+        void SleeperInput(){
+            inputDetail();
+        
+        }
+        // sleeper
+        void CalculateScharge(){
             if(age < 12){
                 baseFare *= 0.5; // 50% discount for children
             }
@@ -80,15 +90,6 @@ class SleeperClass : public Ticket{
                 baseFare = baseFare; // No discount for adults
             }
             sleeperSeats = 100;
-            SleeperCharge = 0;
-        }
-
-        void SleeperInput(){
-            inputDetail();
-        
-        }
-        // sleeper
-        void CalculateScharge(){
             SleeperCharge = baseFare + 200;
             sleeperSeats--;
         }
