@@ -32,7 +32,6 @@ class Ticket{
             cin >> age;
 
             getchar(); 
-
             cout << "Enter Destination: ";
             getline(cin,Destination);
 
@@ -164,6 +163,9 @@ public:
      void cancelTicket(){
      }
      void showStatus(){
+         cout<<"Total Tickets: "<<totalSeats<<endl;
+         cout<<"Sleeper Seats Left: "<<sleeperSeats;
+         cout<<"AC Seats Left: "<<ACseats<<endl;
         
     }
 
@@ -172,6 +174,16 @@ public:
 };
 
 int main(){
+    RailwaySystem rs;
+    int ch;
+
+    do{
+        cout<<"1.Book Ticket."<<endl;
+        cout<<"2.View Tickets."<<endl;
+        cout<<"3.Status."<<endl;
+        cout<<"4.Exit."<<endl;
+        cout<<"Choice:"<<endl;
+        cin>>ch;
    
 
     return 0;
