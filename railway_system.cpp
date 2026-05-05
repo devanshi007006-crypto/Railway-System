@@ -262,7 +262,7 @@ int main(){
         cout<<"3.Cancel Ticket."<<endl;
         cout<<"4.Status."<<endl;
         cout<<"5.Exit."<<endl;
-        cout<<"Choice:"<<endl;
+        cout<<"Choice:";
         cin>>ch;
 
         switch(ch){
