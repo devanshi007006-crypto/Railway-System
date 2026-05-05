@@ -121,9 +121,6 @@ class ACclass : public Ticket{
 
 };
 
-void passenger(){
-
-}
 
 class RailwaySystem{
 public:
