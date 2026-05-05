@@ -184,6 +184,15 @@ int main(){
         cout<<"4.Exit."<<endl;
         cout<<"Choice:"<<endl;
         cin>>ch;
+
+        switch(ch){
+            case 1: rs.bookTicket();
+            case 2: rs.viewTickets();
+            case 3: rs.showStatus();
+        }
+    }
+        while(ch != 4);
+    return 0;
    
 
     return 0;
