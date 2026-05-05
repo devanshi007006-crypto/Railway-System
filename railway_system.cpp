@@ -33,7 +33,7 @@ class Ticket{
             cout << "Enter Age: ";
             cin >> age;
 
-            getchar(); 
+            cin.ignore(); 
             cout << "Enter Destination: ";
             getline(cin,Destination);
 
@@ -180,6 +180,7 @@ public:
             SleeperClass s;
             s.SleeperInput();
             s.calculateFare();
+            s.CalculateScharge();
             s.display();
 
             tickets[count++] = s; // store
@@ -188,6 +189,7 @@ public:
             ACclass a;
             a.ACinput();
             a.calculateFare();
+            a.CalculateACcharge();
             a.display();
 
             tickets[count++] = a; // store
@@ -250,6 +252,8 @@ int main(){
     RailwaySystem rs;
     fstream file("tickets.txt", ios::out | ios::app);
     int ch;
+
+    file.open("tickets.txt", ios::out);
 
     
     do{
